@@ -21,15 +21,15 @@ namespace _20TestsProjectFramework
             
             home.DemoSiteButton.Click();
 
-            // var element =
-            //     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("at-cv-lightbox")));
+            var element =
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("at-cv-lightbox")));
 
             
             
             
             
             
-            var element = wait.Until(CustomExpectedConditions.ElementIsVisible(By.Id("at-cv-lightbox")));  // element is visible implemented using Func
+            // var element = wait.Until(CustomExpectedConditions.ElementIsVisible(By.Id("at-cv-lightbox")));  // element is visible implemented using Func
                 
             var noThanks = Driver.driver.FindElement(
                 By.CssSelector("#at-cv-lightbox-button-holder > a.at-cv-button.at-cv-lightbox-yesno.at-cm-no-button"));
@@ -51,6 +51,13 @@ namespace _20TestsProjectFramework
             testpage.DropdownInputForms.Click();
             testpage.SimpleFormLink.Click();
 
+        }
+
+        public static void NavigateToCheckbox()
+        {
+            var testpage = new TestPage();
+            testpage.DropdownInputForms.Click();
+            testpage.CheckboxLink.Click();
         }
     }
 }
