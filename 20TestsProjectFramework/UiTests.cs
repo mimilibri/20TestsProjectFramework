@@ -1,5 +1,6 @@
 ﻿
 
+using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -15,11 +16,13 @@ namespace _20TestsProjectFramework
             public void SetUp()
             {
                 Actions.InitializeDriver();
+                
                 // var home = new HomePage();
                 // var testPage = new TestPage();
                 Driver.driver.Navigate().GoToUrl(Config.baseUrl);
                 Navigate.NavigateToTestsDropdownAndDismissBanner();
                 Navigate.NavigateToSimpleFormDemo();
+                
 
             }
 
@@ -27,26 +30,14 @@ namespace _20TestsProjectFramework
 
 
             public void InputFieldWorksTest()
-            {   //arrange
+            {   
                 string expected = "random";
+                var firstForm = new BasicFirstFormDemo();
 
-                Thread.Sleep(5000);
+                firstForm.inputField.SendKeys(expected);
+                firstForm.showButton.Click();
 
-                var inputField = Driver.driver.FindElement(By.Id("user-message"));
-                var showButton = Driver.driver.FindElement(By.CssSelector("#get-input > button"));
-
-                var display = Driver.driver.FindElement(By.Id("display"));
-                //act
-                inputField.SendKeys(expected);
-
-                showButton.Click();
-
-                //assert
-                Assert.That(expected, Is.EqualTo(display.Text));
-                inputField.Clear();
-
-
-
+                Assert.That(expected,Is.EqualTo(firstForm.display.Text));
 
             }
 
@@ -58,23 +49,21 @@ namespace _20TestsProjectFramework
 
             public void AdditionFromTwoInputFieldsTest(int a, int b)
             {
+                var firstform = new BasicFirstFormDemo();
                 int expected = a + b;
-                var inputField1 = Driver.driver.FindElement(By.Id("sum1"));
-                var inputField2 = Driver.driver.FindElement(By.Id("sum2"));
-                var value = Driver.driver.FindElement(By.Id("displayvalue"));
-                var getTotal = Driver.driver.FindElement(By.CssSelector("#gettotal > button"));
+                
 
-                inputField1.SendKeys(a.ToString());
-                inputField2.SendKeys(b.ToString());
+                firstform.inputField1.SendKeys(a.ToString());
+                firstform.inputField2.SendKeys(b.ToString());
 
-                //Thread.Sleep(10000);
+                
 
-                getTotal.Click();
+                firstform.getTotal.Click();
 
-                Assert.That(expected.ToString(), Is.EqualTo(value.Text));
+                Assert.That(expected.ToString(), Is.EqualTo(firstform.value.Text));
 
-                inputField1.Clear();
-                inputField2.Clear();
+                    firstform.inputField1.Clear();
+                    firstform.inputField2.Clear();
 
 
 
@@ -98,31 +87,60 @@ namespace _20TestsProjectFramework
         [TestFixture]
         class CheckBoxesTests
         {
-            [Test]
+            [OneTimeSetUp]
 
-            public void CheckboxTest()
+            public void SetUp()
             {
-                
                 Actions.InitializeDriver();
                 Driver.driver.Navigate().GoToUrl(Config.baseUrl);
                 Navigate.NavigateToTestsDropdownAndDismissBanner();
                 Navigate.NavigateToCheckbox();
 
 
+            }
 
-                var checkbox = Driver.driver.FindElement(By.Id("isAgeSelected"));
-                var message = Driver.driver.FindElement(By.Id("txtAge"));
+            [Test]
 
-                checkbox.Click();
+            public void CheckboxTest()
+            {
+                var chb = new BasicCheckboxDemo();
+                
+                chb.checkbox.Click();
 
-                Thread.Sleep(3000);
+                Assert.IsTrue(chb.message.Displayed);
+
+                
 
 
+            }
 
-                Assert.IsTrue(message.Displayed);
+            [Test]
 
+            public void MultipleCheckboxTest()
+            {
+                
+
+                var checkboxes = Driver.driver.FindElements(By.XPath("//input[@type='checkbox']"));
+
+                foreach (var box in checkboxes.Skip(1))
+                {
+                    box.Click();
+                    
+                }
+                
+
+                Thread.Sleep(5000);
+
+                Assert.IsTrue(checkboxes[2].Selected);
+
+
+            }
+
+            [OneTimeTearDown]
+
+            public void TearDown()
+            {
                 Driver.driver.Quit();
-
 
             }
         }

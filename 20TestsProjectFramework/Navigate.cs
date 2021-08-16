@@ -47,6 +47,7 @@ namespace _20TestsProjectFramework
         public static void NavigateToSimpleFormDemo()
         {
             var testpage = new TestPage();
+            
 
             testpage.DropdownInputForms.Click();
             testpage.SimpleFormLink.Click();
