@@ -6,12 +6,11 @@ namespace _20TestsProjectFramework
 {
     class Actions
     {
-        
         public static IWebDriver InitializeDriver()
         {
             var driver = new ChromeDriver();
             driver.Navigate().GoToUrl(Config.baseUrl);
-            driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
             return driver;
         }

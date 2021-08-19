@@ -18,5 +18,8 @@ namespace _20TestsProjectFramework.PageObjects
 
         [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(2) > a")]
         public IWebElement CheckboxLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(3) > a")]
+        public IWebElement RadioButtonDemoLink { get; set; }
     }
 }

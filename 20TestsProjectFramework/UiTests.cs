@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading;
 using _20TestsProjectFramework.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,7 +19,7 @@ namespace _20TestsProjectFramework
             public void SetUp()
             {
                 Driver = Actions.InitializeDriver();
-
+                
                 Navigate.NavigateToTestsDropdownAndDismissBanner(Driver);
                 Navigate.NavigateToSimpleFormDemo(Driver);
             }
@@ -29,12 +28,12 @@ namespace _20TestsProjectFramework
             public void InputFieldWorksTest()
             {
                 string expected = "random";
-                var firstForm = new BasicFirstFormDemo(Driver);
+                ObjectRepository.firstform = new BasicFirstFormDemo(Driver);
 
-                firstForm.inputField.SendKeys(expected);
-                firstForm.showButton.Click();
+                ObjectRepository.firstform.inputField.SendKeys(expected);
+                ObjectRepository.firstform.showButton.Click();
 
-                Assert.That(expected, Is.EqualTo(firstForm.display.Text));
+                Assert.That(expected, Is.EqualTo(ObjectRepository.firstform.display.Text));
             }
 
             [Test]
@@ -44,20 +43,20 @@ namespace _20TestsProjectFramework
             [TestCase(-1, -78)]
             public void AdditionFromTwoInputFieldsTest(int a, int b)
             {
-                var firstform = new BasicFirstFormDemo(Driver);
+                ObjectRepository.firstform = new BasicFirstFormDemo(Driver);
                 int expected = a + b;
 
 
-                firstform.inputField1.SendKeys(a.ToString());
-                firstform.inputField2.SendKeys(b.ToString());
+                ObjectRepository.firstform.inputField1.SendKeys(a.ToString());
+                ObjectRepository.firstform.inputField2.SendKeys(b.ToString());
 
 
-                firstform.getTotal.Click();
+                ObjectRepository.firstform.getTotal.Click();
 
-                Assert.That(expected.ToString(), Is.EqualTo(firstform.value.Text));
+                Assert.That(expected.ToString(), Is.EqualTo(ObjectRepository.firstform.value.Text));
 
-                firstform.inputField1.Clear();
-                firstform.inputField2.Clear();
+                ObjectRepository.firstform.inputField1.Clear();
+                ObjectRepository.firstform.inputField2.Clear();
             }
 
             [OneTimeTearDown]
@@ -85,11 +84,11 @@ namespace _20TestsProjectFramework
             [Test]
             public void CheckboxTest()
             {
-                var chb = new BasicCheckboxDemo(Driver);
+                ObjectRepository.chb = new BasicCheckboxDemo(Driver);
 
-                chb.checkbox.Click();
+                ObjectRepository.chb.checkbox.Click();
 
-                Assert.IsTrue(chb.message.Displayed);
+                Assert.IsTrue(ObjectRepository.chb.message.Displayed);
             }
 
             [Test]

@@ -12,11 +12,11 @@ namespace _20TestsProjectFramework
         public static void NavigateToTestsDropdownAndDismissBanner(IWebDriver driver)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            var home = new HomePage(driver);
+            ObjectRepository.HomePage = new HomePage(driver);
             // var testpage = new TestPage();
 
 
-            home.DemoSiteButton.Click();
+            ObjectRepository.HomePage.DemoSiteButton.Click();
 
             // var element =
             //      wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("image-darkener")));
@@ -35,18 +35,26 @@ namespace _20TestsProjectFramework
 
         public static void NavigateToSimpleFormDemo(IWebDriver driver)
         {
-            var testpage = new TestPage(driver);
+            ObjectRepository.TestPage = new TestPage(driver);
 
 
-            testpage.DropdownInputForms.Click();
-            testpage.SimpleFormLink.Click();
+            ObjectRepository.TestPage.DropdownInputForms.Click();
+            ObjectRepository.TestPage.SimpleFormLink.Click();
         }
 
         public static void NavigateToCheckbox(IWebDriver driver)
         {
-            var testpage = new TestPage(driver);
-            testpage.DropdownInputForms.Click();
-            testpage.CheckboxLink.Click();
+            ObjectRepository.TestPage = new TestPage(driver);
+            ObjectRepository.TestPage.DropdownInputForms.Click();
+            ObjectRepository.TestPage.CheckboxLink.Click();
+        }
+
+        public static void NavigateToRadiobuttons(IWebDriver driver)
+        {
+            ObjectRepository.TestPage = new TestPage(driver);
+            ObjectRepository.TestPage.DropdownInputForms.Click();
+            ObjectRepository.TestPage.RadioButtonDemoLink.Click();
+
         }
     }
 }
