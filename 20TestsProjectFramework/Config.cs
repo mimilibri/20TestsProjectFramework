@@ -1,7 +1,5 @@
 ﻿
 
-using System.Runtime.InteropServices.ComTypes;
-
 namespace _20TestsProjectFramework
 {
     public static class Config

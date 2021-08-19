@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace _20TestsProjectFramework
+namespace _20TestsProjectFramework.PageObjects
 {
     class BasicFirstFormDemo
     {
         public BasicFirstFormDemo()
         {
-            PageFactory.InitElements(Driver.driver,this);
+            PageFactory.InitElements(Driver.driver, this);
         }
 
-        [FindsBy(How = How.Id,Using= "user-message")]
+        [FindsBy(How = How.Id, Using = "user-message")]
         public IWebElement inputField { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text()='Show Message']")]
@@ -23,7 +18,7 @@ namespace _20TestsProjectFramework
 
         [FindsBy(How = How.Id, Using = "display")]
         public IWebElement display { get; set; }
-        
+
         [FindsBy(How = How.Id, Using = "sum1")]
         public IWebElement inputField1 { get; set; }
 
@@ -35,7 +30,5 @@ namespace _20TestsProjectFramework
 
         [FindsBy(How = How.CssSelector, Using = "#gettotal > button")]
         public IWebElement getTotal { get; set; }
-
-
     }
 }

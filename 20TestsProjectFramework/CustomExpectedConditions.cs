@@ -3,9 +3,8 @@ using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework
 {
-     static class CustomExpectedConditions
+    static class CustomExpectedConditions
     {
-
         public static Func<IWebDriver, IWebElement> ElementIsVisible(By locator)
         {
             return (driver) =>
@@ -19,8 +18,6 @@ namespace _20TestsProjectFramework
 
                 return null;
             };
-
         }
-        
     }
 }

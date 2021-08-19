@@ -1,24 +1,9 @@
-﻿using System;
-using System.Threading;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-
-namespace _20TestsProjectFramework
+﻿namespace _20TestsProjectFramework.PageObjects
 {
     class EntryPoint
     {
         static void Main()
         {
-           
         }
-
-       
-       
-
-
-
-       
-
     }
 }
