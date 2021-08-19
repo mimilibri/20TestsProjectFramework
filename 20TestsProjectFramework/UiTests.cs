@@ -6,26 +6,30 @@ using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework
 {
+    
     class UiTests
     {
+        
         [TestFixture]
+        [Parallelizable(ParallelScope.Fixtures)]
         class InputFieldsTests
         {
+            public IWebDriver Driver { get; set; }
+
             [OneTimeSetUp]
             public void SetUp()
             {
-                Actions.InitializeDriver();
+                Driver = Actions.InitializeDriver();
 
-                Driver.driver.Navigate().GoToUrl(Config.baseUrl);
-                Navigate.NavigateToTestsDropdownAndDismissBanner();
-                Navigate.NavigateToSimpleFormDemo();
+                Navigate.NavigateToTestsDropdownAndDismissBanner(Driver);
+                Navigate.NavigateToSimpleFormDemo(Driver);
             }
 
             [Test]
             public void InputFieldWorksTest()
             {
                 string expected = "random";
-                var firstForm = new BasicFirstFormDemo();
+                var firstForm = new BasicFirstFormDemo(Driver);
 
                 firstForm.inputField.SendKeys(expected);
                 firstForm.showButton.Click();
@@ -40,7 +44,7 @@ namespace _20TestsProjectFramework
             [TestCase(-1, -78)]
             public void AdditionFromTwoInputFieldsTest(int a, int b)
             {
-                var firstform = new BasicFirstFormDemo();
+                var firstform = new BasicFirstFormDemo(Driver);
                 int expected = a + b;
 
 
@@ -59,26 +63,29 @@ namespace _20TestsProjectFramework
             [OneTimeTearDown]
             public void TearDown()
             {
-                Driver.driver.Quit();
+                Driver.Quit();
             }
         }
 
         [TestFixture]
+        [Parallelizable(ParallelScope.Fixtures)]
         class CheckBoxesTests
         {
+            public IWebDriver Driver { get; set; }
+
             [OneTimeSetUp]
             public void SetUp()
             {
-                Actions.InitializeDriver();
-                Driver.driver.Navigate().GoToUrl(Config.baseUrl);
-                Navigate.NavigateToTestsDropdownAndDismissBanner();
-                Navigate.NavigateToCheckbox();
+                Driver = Actions.InitializeDriver();
+
+                Navigate.NavigateToTestsDropdownAndDismissBanner(Driver);
+                Navigate.NavigateToCheckbox(Driver);
             }
 
             [Test]
             public void CheckboxTest()
             {
-                var chb = new BasicCheckboxDemo();
+                var chb = new BasicCheckboxDemo(Driver);
 
                 chb.checkbox.Click();
 
@@ -88,15 +95,12 @@ namespace _20TestsProjectFramework
             [Test]
             public void MultipleCheckboxTest()
             {
-                var checkboxes = Driver.driver.FindElements(By.XPath("//input[@type='checkbox']"));
+                var checkboxes = Driver.FindElements(By.XPath("//input[@type='checkbox']"));
 
                 foreach (var box in checkboxes.Skip(1))
                 {
                     box.Click();
                 }
-
-
-                Thread.Sleep(5000);
 
                 Assert.IsTrue(checkboxes[2].Selected);
             }
@@ -104,7 +108,7 @@ namespace _20TestsProjectFramework
             [OneTimeTearDown]
             public void TearDown()
             {
-                Driver.driver.Quit();
+                Driver.Quit();
             }
         }
     }

@@ -5,9 +5,9 @@ namespace _20TestsProjectFramework.PageObjects
 {
     class BasicCheckboxDemo
     {
-        public BasicCheckboxDemo()
+        public BasicCheckboxDemo(IWebDriver driver)
         {
-            PageFactory.InitElements(Driver.driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
 

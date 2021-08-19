@@ -5,9 +5,9 @@ namespace _20TestsProjectFramework.PageObjects
 {
     class TestPage
     {
-        public TestPage()
+        public TestPage(IWebDriver driver)
         {
-            PageFactory.InitElements(Driver.driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(1) > a")]

@@ -9,10 +9,10 @@ namespace _20TestsProjectFramework
 {
     public static class Navigate
     {
-        public static void NavigateToTestsDropdownAndDismissBanner()
+        public static void NavigateToTestsDropdownAndDismissBanner(IWebDriver driver)
         {
-            WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(5));
-            var home = new HomePage();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var home = new HomePage(driver);
             // var testpage = new TestPage();
 
 
@@ -25,7 +25,7 @@ namespace _20TestsProjectFramework
             var element =
                 wait.Until(CustomExpectedConditions.ElementIsVisible(By.Id("at-cv-lightbox"))); // element is visible implemented using Func
 
-            var noThanks = Driver.driver.FindElement(By.CssSelector("#at-cv-lightbox-button-holder > a.at-cv-button.at-cv-lightbox-yesno.at-cm-no-button"));
+            var noThanks = driver.FindElement(By.CssSelector("#at-cv-lightbox-button-holder > a.at-cv-button.at-cv-lightbox-yesno.at-cm-no-button"));
 
 
             noThanks.Click();
@@ -33,18 +33,18 @@ namespace _20TestsProjectFramework
 //            
         }
 
-        public static void NavigateToSimpleFormDemo()
+        public static void NavigateToSimpleFormDemo(IWebDriver driver)
         {
-            var testpage = new TestPage();
+            var testpage = new TestPage(driver);
 
 
             testpage.DropdownInputForms.Click();
             testpage.SimpleFormLink.Click();
         }
 
-        public static void NavigateToCheckbox()
+        public static void NavigateToCheckbox(IWebDriver driver)
         {
-            var testpage = new TestPage();
+            var testpage = new TestPage(driver);
             testpage.DropdownInputForms.Click();
             testpage.CheckboxLink.Click();
         }

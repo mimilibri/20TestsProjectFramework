@@ -5,9 +5,9 @@ namespace _20TestsProjectFramework.PageObjects
 {
     class BasicFirstFormDemo
     {
-        public BasicFirstFormDemo()
+        public BasicFirstFormDemo(IWebDriver driver)
         {
-            PageFactory.InitElements(Driver.driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = "user-message")]

@@ -1,12 +1,19 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace _20TestsProjectFramework
 {
     class Actions
     {
-        public static void InitializeDriver()
+        
+        public static IWebDriver InitializeDriver()
         {
-            Driver.driver = new ChromeDriver();
+            var driver = new ChromeDriver();
+            driver.Navigate().GoToUrl(Config.baseUrl);
+            driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(5);
+
+            return driver;
         }
     }
 }

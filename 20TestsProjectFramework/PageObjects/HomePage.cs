@@ -5,9 +5,9 @@ namespace _20TestsProjectFramework.PageObjects
 {
     public class HomePage
     {
-        public HomePage()
+        public HomePage(IWebDriver driver)
         {
-            PageFactory.InitElements(Driver.driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.CssSelector, Using = "#block-block-57 > div > div > a")]
