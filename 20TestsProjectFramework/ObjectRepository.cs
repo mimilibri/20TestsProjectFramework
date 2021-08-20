@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _20TestsProjectFramework.PageObjects;
+﻿using _20TestsProjectFramework.PageObjects;
 using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework
@@ -17,6 +12,7 @@ namespace _20TestsProjectFramework
         public static BasicFirstFormDemo firstform;
         public static HomePage HomePage;
         public static BasicRadiobuttonDemo rbp;
-
+        public static TablePaginationPage tpp;
+        public static BasicDropdown bd;
     }
 }

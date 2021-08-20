@@ -1,14 +1,16 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using _20TestsProjectFramework.ComponentHelper;
 using _20TestsProjectFramework.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace _20TestsProjectFramework
 {
-    
     class UiTests
     {
-        
         [TestFixture]
         [Parallelizable(ParallelScope.Fixtures)]
         class InputFieldsTests
@@ -19,7 +21,7 @@ namespace _20TestsProjectFramework
             public void SetUp()
             {
                 Driver = Actions.InitializeDriver();
-                
+
                 Navigate.NavigateToTestsDropdownAndDismissBanner(Driver);
                 Navigate.NavigateToSimpleFormDemo(Driver);
             }
@@ -108,6 +110,39 @@ namespace _20TestsProjectFramework
             public void TearDown()
             {
                 Driver.Quit();
+            }
+
+            [TestFixture]
+            class TableTests
+            {
+                [Test]
+                public void CheckColumnValue()
+                {
+                    ObjectRepository.Driver = Actions.InitializeDriver();
+                    ObjectRepository.tpp = new TablePaginationPage(ObjectRepository.Driver);
+
+                    Navigate.NavigateToPaginationTable(ObjectRepository.Driver);
+                    Assert.That("Table cell", Is.EqualTo(TableHelper.GetColumnValue("//table", 1, 2)));
+                    ObjectRepository.Driver.Quit();
+                }
+            }
+
+            [TestFixture]
+            class DropdownTests
+            {
+                public IWebDriver Driver { get; set; }
+                public string values { get; set; }
+
+                [Test]
+                public void SelectFromDropdown()
+                {
+                    Driver = Actions.InitializeDriver();
+                    Navigate.NavigateToDropdown(Driver);
+                    var dropdownSelections = Driver.FindElements(By.XPath("//select[@id='select-demo']/option"));
+                    dropdownSelections[3].Click();
+                    Assert.IsTrue(ObjectRepository.bd.dropdownDisplay.Text.Contains("Tuesday"));
+                    Driver.Quit();
+                }
             }
         }
     }
