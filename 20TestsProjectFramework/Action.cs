@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace _20TestsProjectFramework
 {
-    class Actions
+    class Action
     {
         public static IWebDriver InitializeDriver()
         {

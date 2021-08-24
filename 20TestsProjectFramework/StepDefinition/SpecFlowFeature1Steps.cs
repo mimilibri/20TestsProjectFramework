@@ -16,7 +16,7 @@ namespace _20TestsProjectFramework.FeatureFiles
         [Given(@"i was on home page")]
         public void GivenIWasOnHomePage()
         {
-            ObjectRepository.Driver = Actions.InitializeDriver();
+            ObjectRepository.Driver = Action.InitializeDriver();
         }
 
         #endregion

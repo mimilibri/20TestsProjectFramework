@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework
@@ -18,6 +19,14 @@ namespace _20TestsProjectFramework
 
                 return null;
             };
+        }
+
+        public static Func<IWebDriver, IList<IWebElement>> GetAllElements(By locator)
+        {
+            return ((driver) =>
+            {
+                return driver.FindElements(locator);
+            });
         }
     }
 }
