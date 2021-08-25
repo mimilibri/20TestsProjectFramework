@@ -12,10 +12,9 @@ namespace _20TestsProjectFramework.PageObjects
 
 
         [FindsBy(How = How.Id, Using = "isAgeSelected")]
-        public IWebElement checkbox { get; set; }
+        public IWebElement Checkbox { get; set; }
 
         [FindsBy(How = How.Id, Using = "txtAge")]
-        public IWebElement message { get; set; }
-        //[FindsBy(How = How.XPath,Using = "//input[@type='checkbox']")] public IWebElement checkboxes { get; set; }
+        public IWebElement Message { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework.ComponentHelper
 {
-    public class TableHelper
+    public static class TableHelper
     {
         internal static string GetTableXpath(string locator, int row, int col)
         {

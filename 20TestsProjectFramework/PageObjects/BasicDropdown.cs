@@ -12,13 +12,13 @@ namespace _20TestsProjectFramework.PageObjects
 
 
         [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(4) > a")]
-        public IWebElement selectDropdownListLink { get; set; }
+        public IWebElement SelectDropdownListLink { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//select[@id='select-demo']")]
-        public IWebElement tablePaginationLink { get; set; }
+        public IWebElement TablePaginationLink { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "selected-value")]
-        public IWebElement dropdownDisplay { get; set; }
+        public IWebElement DropdownDisplay { get; set; }
     }
 }
 

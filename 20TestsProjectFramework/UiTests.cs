@@ -17,7 +17,7 @@ namespace _20TestsProjectFramework
     class UiTests
     {
         [TestFixture]
-        [Parallelizable(ParallelScope.Fixtures)]
+        [Parallelizable(ParallelScope.Fixtures)]             //TODO: Hooks should be in a separate class
         class InputFieldsTests
         {
             public IWebDriver Driver { get; set; }
@@ -37,10 +37,10 @@ namespace _20TestsProjectFramework
                 string expected = "random";
                 ObjectRepository.firstform = new BasicFirstFormDemo(Driver);
 
-                ObjectRepository.firstform.inputField.SendKeys(expected);
-                ObjectRepository.firstform.showButton.Click();
+                ObjectRepository.firstform.InputField.SendKeys(expected);
+                ObjectRepository.firstform.ShowButton.Click();
 
-                Assert.That(expected, Is.EqualTo(ObjectRepository.firstform.display.Text));
+                Assert.That(expected, Is.EqualTo(ObjectRepository.firstform.Display.Text));
             }
 
             [Test]
@@ -54,16 +54,16 @@ namespace _20TestsProjectFramework
                 int expected = a + b;
 
 
-                ObjectRepository.firstform.inputField1.SendKeys(a.ToString());
-                ObjectRepository.firstform.inputField2.SendKeys(b.ToString());
+                ObjectRepository.firstform.InputField1.SendKeys(a.ToString());
+                ObjectRepository.firstform.InputField2.SendKeys(b.ToString());
 
 
-                ObjectRepository.firstform.getTotal.Click();
+                ObjectRepository.firstform.GetTotal.Click();
 
-                Assert.That(expected.ToString(), Is.EqualTo(ObjectRepository.firstform.value.Text));
+                Assert.That(expected.ToString(), Is.EqualTo(ObjectRepository.firstform.Value.Text));
 
-                ObjectRepository.firstform.inputField1.Clear();
-                ObjectRepository.firstform.inputField2.Clear();
+                ObjectRepository.firstform.InputField1.Clear();
+                ObjectRepository.firstform.InputField2.Clear();
             }
 
             [OneTimeTearDown]
@@ -93,9 +93,9 @@ namespace _20TestsProjectFramework
             {
                 ObjectRepository.chb = new BasicCheckboxDemo(Driver);
 
-                ObjectRepository.chb.checkbox.Click();
+                ObjectRepository.chb.Checkbox.Click();
 
-                Assert.IsTrue(ObjectRepository.chb.message.Displayed);
+                Assert.IsTrue(ObjectRepository.chb.Message.Displayed);
             }
 
             [Test]
@@ -147,7 +147,7 @@ namespace _20TestsProjectFramework
                     Navigate.NavigateToDropdown(Driver);
                     var dropdownSelections = Driver.FindElements(By.XPath("//select[@id='select-demo']/option"));
                     dropdownSelections[3].Click();
-                    Assert.IsTrue(ObjectRepository.bd.dropdownDisplay.Text.Contains("Tuesday"));
+                    Assert.IsTrue(ObjectRepository.bd.DropdownDisplay.Text.Contains("Tuesday"));
                     Driver.Quit();
                 }
             }
@@ -217,7 +217,7 @@ namespace _20TestsProjectFramework
                     Driver = new ChromeDriver();
                     Driver.Navigate().GoToUrl("https://jqueryui.com/autocomplete/"); 
                     Driver.SwitchTo().Frame(Driver.FindElement(By.ClassName("demo-frame")));
-                    Driver.FindElement(By.ClassName("ui-autocomplete-input")).SendKeys("a");
+                    Driver.FindElement(By.ClassName("ui-autocomplete-input")).SendKeys("a");  //TODO: POM
                     Thread.Sleep(1000);
 
                     var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
@@ -228,6 +228,28 @@ namespace _20TestsProjectFramework
                     Assert.That("Asp", Is.EqualTo(elements[2].Text));
 
 
+                    Driver.Quit();
+                }
+            }
+
+            [TestFixture]
+            [Parallelizable(ParallelScope.All)]
+            class AlertsTests
+            {
+                public IWebDriver Driver { get; set; }
+                
+
+                [Test]
+                public void JavaScriptAlertTest()
+                {
+                    Driver = new ChromeDriver();
+                    Driver.Navigate().GoToUrl("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
+                    Driver.FindElement(By.CssSelector(
+                            "#easycont > div > div.col-md-6.text-left > div:nth-child(4) > div.panel-body > button"))
+                        .Click();
+                    IAlert alert = Driver.SwitchTo().Alert();
+                    Assert.IsTrue(alert.Text.Contains("alert"));
+                    alert.Dismiss();
                     Driver.Quit();
                 }
             }

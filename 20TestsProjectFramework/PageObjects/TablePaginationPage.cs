@@ -12,9 +12,9 @@ namespace _20TestsProjectFramework.PageObjects
 
 
         [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(3) > a")]
-        public IWebElement tableLink { get; set; }
+        public IWebElement TableLink { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#treemenu > li > ul > li:nth-child(3) > ul > li:nth-child(1) > a")]
-        public IWebElement tablePaginationLink { get; set; }
+        public IWebElement TablePaginationLink { get; set; }
     }
 }

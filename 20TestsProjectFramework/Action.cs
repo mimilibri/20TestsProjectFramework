@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace _20TestsProjectFramework
 {
-    class Action
+    static class Action
     {
         public static IWebDriver InitializeDriver()
         {
@@ -13,7 +13,7 @@ namespace _20TestsProjectFramework
             options.AddArgument("--headless");
 
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(Config.baseUrl);
+            driver.Navigate().GoToUrl(Config.BaseUrl);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
             return driver;

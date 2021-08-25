@@ -7,9 +7,6 @@ namespace _20TestsProjectFramework.FeatureFiles
     [Binding]
     public class SpecFlowFeature1Steps
     {
-        //public IWebDriver Driver1 { get; set; }
-
-        //private BasicRadiobuttonDemo rbp;
 
         #region Given
 
@@ -54,7 +51,7 @@ namespace _20TestsProjectFramework.FeatureFiles
         }
 
         [When(@"i click on the age radiobutton")]
-        public void WhenIClickOnTheAgeRadiobutton()
+        public  void WhenIClickOnTheAgeRadiobutton()
         {
             ObjectRepository.rbp.RadioButton0to5.Click();
         }

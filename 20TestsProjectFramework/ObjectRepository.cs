@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace _20TestsProjectFramework
 {
-    class ObjectRepository
+    static class ObjectRepository
     {
         public static IWebDriver Driver { get; set; }
 
@@ -14,5 +14,6 @@ namespace _20TestsProjectFramework
         public static BasicRadiobuttonDemo rbp;
         public static TablePaginationPage tpp;
         public static BasicDropdown bd;
+        public static JavascriptAlertBoxPage jsa;
     }
 }

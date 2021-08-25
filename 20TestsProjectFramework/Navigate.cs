@@ -11,27 +11,19 @@ namespace _20TestsProjectFramework
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             ObjectRepository.HomePage = new HomePage(driver);
-            // var testpage = new TestPage();
-
-
             ObjectRepository.HomePage.DemoSiteButton.Click();
 
-            // var element =
             //      wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("image-darkener")));
 
 
-            var element =
-                wait.Until(CustomExpectedConditions
-                    .ElementIsVisible(By.Id("at-cv-lightbox"))); // element is visible implemented using Func
+            wait.Until(CustomExpectedConditions
+                .ElementIsVisible(By.Id("at-cv-lightbox"))); // element is visible implemented using Func
 
             var noThanks =
                 driver.FindElement(By.CssSelector(
                     "#at-cv-lightbox-button-holder > a.at-cv-button.at-cv-lightbox-yesno.at-cm-no-button"));
 
-
             noThanks.Click();
-
-//            
         }
 
         public static void NavigateToSimpleFormDemo(IWebDriver driver)
@@ -68,8 +60,8 @@ namespace _20TestsProjectFramework
         public static void NavigateToPaginationTable(IWebDriver driver)
         {
             NavigateToTestsDropdownAndDismissBanner(driver);
-            ObjectRepository.tpp.tableLink.Click();
-            ObjectRepository.tpp.tablePaginationLink.Click();
+            ObjectRepository.tpp.TableLink.Click();
+            ObjectRepository.tpp.TablePaginationLink.Click();
         }
 
         public static void NavigateToDropdown(IWebDriver driver)
@@ -77,7 +69,15 @@ namespace _20TestsProjectFramework
             NavigateToTestsDropdownAndDismissBanner(driver);
             NavigateToInputForms(driver);
             ObjectRepository.bd = new BasicDropdown(driver);
-            ObjectRepository.bd.selectDropdownListLink.Click();
+            ObjectRepository.bd.SelectDropdownListLink.Click();
+        }
+
+        public static void NavigateToJSAlerts(IWebDriver driver)
+        {
+            NavigateToTestsDropdownAndDismissBanner(driver);
+            ObjectRepository.jsa = new JavascriptAlertBoxPage(driver);
+            ObjectRepository.jsa.AlertsAndModalsLink.Click();
+            ObjectRepository.jsa.JavaScriptAlertsLink.Click();
         }
     }
 }

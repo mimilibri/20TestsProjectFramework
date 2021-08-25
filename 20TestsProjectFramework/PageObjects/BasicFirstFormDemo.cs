@@ -11,24 +11,24 @@ namespace _20TestsProjectFramework.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "user-message")]
-        public IWebElement inputField { get; set; }
+        public IWebElement InputField { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text()='Show Message']")]
-        public IWebElement showButton { get; set; }
+        public IWebElement ShowButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "display")]
-        public IWebElement display { get; set; }
+        public IWebElement Display { get; set; }
 
         [FindsBy(How = How.Id, Using = "sum1")]
-        public IWebElement inputField1 { get; set; }
+        public IWebElement InputField1 { get; set; }
 
         [FindsBy(How = How.Id, Using = "sum2")]
-        public IWebElement inputField2 { get; set; }
+        public IWebElement InputField2 { get; set; }
 
         [FindsBy(How = How.Id, Using = "displayvalue")]
-        public IWebElement value { get; set; }
+        public IWebElement Value { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#gettotal > button")]
-        public IWebElement getTotal { get; set; }
+        public IWebElement GetTotal { get; set; }
     }
 }
