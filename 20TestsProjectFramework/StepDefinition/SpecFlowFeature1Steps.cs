@@ -102,10 +102,6 @@ namespace _20TestsProjectFramework.FeatureFiles
         #endregion
 
 
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            ObjectRepository.Driver.Quit();
-        }
+        
     }
 }
